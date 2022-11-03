@@ -7,21 +7,32 @@
 The goals is to identify the code smells and fix it.
 
 ## Pre requisites
+
 ```text
 PHP 8.1
 ```
-    
+
 ## Install dependencies
+
 ```text
 make install
 ```
 
 ## Check complexity
+
 ```text
 make complexity
 ```
-    
+
 ## Run the tests
+
 ```text
 make tests
 ```
+
+## TODO!
+
+Weather Interface
+Metaweather Implements Weather interface
+Move date filter to WeatherClient
+Create Domain (struct to use as response)

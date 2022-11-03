@@ -1,36 +1,30 @@
 <?php
 
 namespace WeatherKata;
-
-use WeatherKata\Http\Client;
+use WeatherClient;
 
 class Forecast
 {
     private $client;
 
-    public function __construct(Client $client) {
+    public function __construct(WeatherClient $client) {
         $this->client = $client;
     }
     
     public function predict(string &$city, \DateTime $datetime = null, bool $wind = false): string
     {
-        if ($datetime == null) {
-            $datetime = new \DateTime();
-        }
+        $datetime ??= new \DateTime();
 
         // If there are predictions
-        if ($datetime >= new \DateTime("+6 days 00:00:00")) {
+        
+        if (! $this->isPredictableDay($datetime)) {
            return "";
         } 
 
-        // Todo abstract
-        // Find the id of the city on metawheather
-        $city_id = $this->client->get("https://www.metaweather.com/api/location/search/?query=$city");
-        $city = $city_id;
-
-        // Find the predictions for the city
-        $results = $this->client->get("https://www.metaweather.com/api/location/$city_id");
-
+        ////// Todo abstract ////// WeatherClient
+        // Find the woeid of the city on metawheather
+        $this->client->get_weather_by_city($city);
+        ////////////////////////
 
         // TODO serializer
         foreach ($results as $result) {
@@ -43,5 +37,10 @@ class Forecast
                 return $result['weather_state_name'];
             }
         }
+        return "";
+    }
+
+    private function isPredictableDay(\DateTime $datetime){
+        return $datetime < new \DateTime("+6 days 00:00:00");
     }
 }
