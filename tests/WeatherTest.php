@@ -13,7 +13,7 @@ class WeatherTest extends TestCase
     public function find_the_weather_of_today()
     {
         $forecast = new Forecast(client: new MetaweatherWeatherProvider(new HttpClient()));
-        $city     = "Madrid";
+        $city = "Madrid";
 
         $prediction = $forecast->predict($city);
 
@@ -24,14 +24,14 @@ class WeatherTest extends TestCase
     public function find_the_weather_of_any_day()
     {
         $forecast = new Forecast(client: new MetaweatherWeatherProvider(new HttpClient()));
-        $city     = "Madrid";
+        $city = "Madrid";
 
-        $prediction = $forecast->predict($city, new \DateTime('+2 days'));
+        $prediction = $forecast->predict($city, new DateTime('+2 days'));
 
-        $this->assertEquals('sunny', $prediction );
+        $this->assertEquals('sunny', $prediction);
     }
 
-/** @test */
+    /** @test */
     public function find_the_wind_of_any_day()
     {
         $forecast = new Forecast(client: new MetaweatherWeatherProvider(new HttpClient()));
@@ -59,7 +59,7 @@ class WeatherTest extends TestCase
         $forecast = new Forecast(client: new MetaweatherWeatherProvider(new HttpClient()));
         $city = "Madrid";
 
-        $prediction = $forecast->predict($city, new \DateTime('+6 days'));
+        $prediction = $forecast->predict($city, new DateTime('+6 days'));
 
         $this->assertEquals("", $prediction);
     }
