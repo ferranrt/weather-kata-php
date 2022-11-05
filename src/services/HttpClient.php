@@ -1,8 +1,9 @@
 <?php
 
-namespace WeatherKata\Http;
 
-class Client
+namespace WeatherKata\services;
+
+class HttpClient
 {
     public function get(string $a_url): string|array
     {

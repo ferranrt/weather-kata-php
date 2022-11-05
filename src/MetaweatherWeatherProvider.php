@@ -1,14 +1,15 @@
 <?php
 
 namespace WeatherKata;
+use WeatherKata\interfaces\WeatherProvider;
+use WeatherKata\services\HttpClient;
 
-use WeatherKata\Http\Client;
 
-class WeatherClient
+class MetaweatherWeatherProvider implements WeatherProvider
 {   
-    private $client;
+    private HttpClient $client;
     
-    public function __construct(Client $client) {
+    public function __construct(HttpClient $client) {
         $this->client = $client;
     }
 
