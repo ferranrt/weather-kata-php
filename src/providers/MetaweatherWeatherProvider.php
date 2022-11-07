@@ -16,10 +16,8 @@ class MetaweatherWeatherProvider implements WeatherProvider
         $this->client = $client;
     }
 
-    public function get_weather_by_city_and_time(string &$city, \DateTime $datetime): ?Weather
+    public function get_weather_by_city_id_and_time(string $city_id, \DateTime $datetime): ?Weather
     {
-        $city_id = $this->client->get("https://www.metaweather.com/api/location/search/?query=$city");
-        $city = $city_id;
         $results = $this->client->get("https://www.metaweather.com/api/location/$city_id");
 
         foreach ($results as $result) {
@@ -29,5 +27,11 @@ class MetaweatherWeatherProvider implements WeatherProvider
         }
         return null;
 
+    }
+
+
+    public function get_city_id(string $city): string
+    {
+        return $this->client->get("https://www.metaweather.com/api/location/search/?query=$city");
     }
 }
