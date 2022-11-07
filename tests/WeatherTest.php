@@ -3,7 +3,7 @@
 
 use PHPUnit\Framework\TestCase;
 use WeatherKata\Forecast;
-use WeatherKata\MetaweatherWeatherProvider;
+use WeatherKata\providers\MetaweatherWeatherProvider;
 use WeatherKata\services\HttpClient;
 
 

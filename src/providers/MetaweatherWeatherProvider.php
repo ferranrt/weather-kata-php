@@ -1,6 +1,6 @@
 <?php
 
-namespace WeatherKata;
+namespace WeatherKata\providers;
 
 use WeatherKata\interfaces\WeatherProvider;
 use WeatherKata\services\HttpClient;
